@@ -1,11 +1,11 @@
 import { create } from 'zustand';
-import type { AnalysisResponse } from '../types/result';
+import type { AnalysisResult } from '../types/result';
 
 interface ResultState {
-  result: AnalysisResponse | null;
+  result: AnalysisResult | null;
   isLoading: boolean;
   error: string | null;
-  setResult: (result: AnalysisResponse) => void;
+  setResult: (result: AnalysisResult) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   reset: () => void;

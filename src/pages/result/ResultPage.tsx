@@ -2,15 +2,20 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useResultStore } from '../../store/useResultStore';
 import AnimalChart from './AnimalChart';
+import type { AnimalType } from '../../types/result';
 
-const ANIMAL_EMOJI: Record<string, string> = {
-  고양이: '🐱',
-  강아지: '🐶',
-  공룡: '🦕',
-  토끼: '🐰',
-  곰: '🐻',
-  여우: '🦊',
-  햄스터: '🐹',
+const ANIMAL_EMOJI: Record<AnimalType, string> = {
+  CAT: '🐱',
+  DOG: '🐶',
+  FOX: '🦊',
+  BEAR: '🐻',
+};
+
+const ANIMAL_NAME: Record<AnimalType, string> = {
+  CAT: '고양이상',
+  DOG: '강아지상',
+  FOX: '여우상',
+  BEAR: '곰상',
 };
 
 const ResultPage: React.FC = () => {
@@ -23,6 +28,7 @@ const ResultPage: React.FC = () => {
   }
 
   const emoji = ANIMAL_EMOJI[result.topAnimal] ?? '🐾';
+  const animalName = ANIMAL_NAME[result.topAnimal] ?? result.topAnimal;
 
   const handleRetry = () => {
     reset();
@@ -44,7 +50,7 @@ const ResultPage: React.FC = () => {
           당신의 동물상은
         </p>
         <h2 style={{ fontSize: '32px', fontWeight: 700, color: '#4f46e5' }}>
-          {result.topAnimal}
+          {animalName}
         </h2>
       </div>
 

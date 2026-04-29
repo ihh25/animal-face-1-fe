@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8081',
+  baseURL: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080',
   withCredentials: true,
 });
 
@@ -24,7 +24,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const { data } = await axios.post(
-          `${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8081'}/api/v1/auth/reissue`,
+          `${import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080'}/api/v1/auth/reissue`,
           {},
           { withCredentials: true }
         );

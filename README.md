@@ -1,75 +1,73 @@
-# animal-face-1-fe
-[FE] 멋사 14기 동물상 찾기 프로젝트 1팀
+# React + TypeScript + Vite
 
-# 🐾 AnimalFace Frontend
-나의 동물상을 찾아주는 AI 분석 웹 서비스입니다.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 기술 스택
+Currently, two official plugins are available:
 
-- React + Vite + TypeScript
-- Zustand (상태관리)
-- Axios (API 통신)
-- React Router v6
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## 폴더 구조
+## React Compiler
 
-```
-src/
-├── types/
-│   ├── result.ts              # 분석 결과 타입 (A)
-│   └── collection.ts          # 도감 타입 (B)
-│
-├── api/
-│   ├── axios.ts               # axios 인스턴스 · 인터셉터 (A)
-│   ├── upload.ts              # 업로드 · 분석 API (A)
-│   └── collection.ts          # 도감 API (B)
-│
-├── store/
-│   ├── useResultStore.ts      # 분석 결과 상태 (A)
-│   └── useCollectionStore.ts  # 도감 상태 (B)
-│
-├── components/
-│   ├── Loader.tsx             # 로딩 스피너 (A)
-│   ├── Header.tsx             # 공통 헤더 (B)
-│   ├── Button.tsx             # 공통 버튼 (B)
-│   ├── Modal.tsx              # 공통 모달 (B)
-│   └── AnimalCard.tsx         # 동물 카드 (B)
-│
-├── pages/
-│   ├── upload/
-│   │   └── UploadPage.tsx     # 사진 업로드 (A)
-│   ├── loading/
-│   │   └── LoadingPage.tsx    # AI 분석 대기 (A)
-│   ├── result/
-│   │   ├── ResultPage.tsx     # 분석 결과 (A)
-│   │   └── AnimalChart.tsx    # 동물 확률 차트 (A)
-│   └── collection/
-│       ├── CollectionPage.tsx       # 도감 목록 (B)
-│       └── CollectionDetailPage.tsx # 도감 상세 (B)
-│
-├── styles/
-│   ├── global.css             # 전역 스타일 (B)
-│   └── tokens.css             # 디자인 토큰 (B)
-│
-├── App.tsx                    # 라우터 설정 (A)
-└── main.tsx                   # 진입점 (A)
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
+
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-## 시작하기
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```bash
-# 패키지 설치
-npm install
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-# 환경변수 설정
-cp .env.example .env
-
-# 개발 서버 실행
-npm run dev
-```
-
-## 환경변수
-
-```
-VITE_API_BASE_URL=http://localhost:8081
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```

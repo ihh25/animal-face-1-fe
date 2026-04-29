@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import UploadPage from './pages/upload/UploadPage';
@@ -23,5 +24,21 @@ const App: React.FC = () => {
     </BrowserRouter>
   );
 };
+=======
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from '@/components/Header';
+import CollectionPage from '@/pages/collection/CollectionPage';
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/collection" element={<CollectionPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+>>>>>>> origin/B
 
 export default App;

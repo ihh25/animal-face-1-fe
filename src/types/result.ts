@@ -16,10 +16,16 @@ export interface AnimalPrediction {
 
 // 분석 결과
 export interface AnalysisResult {
-  analysisId: number;
+  id: number;
+  animalType: AnimalType;       // ← topAnimal → animalType
+  similarity: number;           // ← 추가
+  allSimilarities: {            // ← animals → allSimilarities
+    CAT: number;
+    DOG: number;
+    FOX: number;
+    BEAR: number;
+  };
   imageUrl: string;
-  topAnimal: AnimalType;
-  animals: AnimalPrediction[];
   createdAt: string;
 }
 

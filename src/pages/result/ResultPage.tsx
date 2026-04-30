@@ -27,8 +27,8 @@ const ResultPage: React.FC = () => {
     return null;
   }
 
-  const emoji = ANIMAL_EMOJI[result.topAnimal] ?? '🐾';
-  const animalName = ANIMAL_NAME[result.topAnimal] ?? result.topAnimal;
+  const emoji = ANIMAL_EMOJI[result.animalType] ?? '🐾';
+  const animalName = ANIMAL_NAME[result.animalType] ?? result.animalType;
 
   const handleRetry = () => {
     reset();
@@ -71,7 +71,7 @@ const ResultPage: React.FC = () => {
       <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '16px' }}>
         동물상 분석 결과
       </h3>
-      <AnimalChart animals={result.animals} />
+      <AnimalChart animals={result.allSimilarities} />
 
       {/* 버튼 */}
       <div style={{ display: 'flex', gap: '12px', marginTop: '32px' }}>

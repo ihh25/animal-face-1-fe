@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useResultStore } from '../../store/useResultStore';
 import AnimalChart from './AnimalChart';
-import type { AnimalType } from '../../types/result';
+import type { AnimalType, AnimalPrediction } from '../../types/result';
 
 const ANIMAL_EMOJI: Record<AnimalType, string> = {
   CAT: '🐱',
@@ -26,6 +26,14 @@ const ResultPage: React.FC = () => {
     navigate('/');
     return null;
   }
+
+  //   // allSimilarities를 AnimalPrediction[] 배열로 변환
+  // const animals: AnimalPrediction[] = Object.entries(result.allSimilarities).map(
+  //   ([label, probability]) => ({
+  //     label: label as AnimalType,
+  //     probability: probability / 100,  // 백엔드가 % 단위로 주니까 0~1로 변환
+  //   })
+  // );
 
   const emoji = ANIMAL_EMOJI[result.animalType] ?? '🐾';
   const animalName = ANIMAL_NAME[result.animalType] ?? result.animalType;

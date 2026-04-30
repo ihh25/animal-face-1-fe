@@ -5,9 +5,10 @@ import api from '../../api/axios';
 const SignupPage: React.FC = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
-    username: '',
+    loginId: '',
     password: '',
     passwordConfirm: '',
+    nickname: '',
     email: '',
   });
   const [error, setError] = useState<string | null>(null);
@@ -31,7 +32,12 @@ const SignupPage: React.FC = () => {
     try {
       await api.post(
         '/api/v1/auth/signup',
-        { username: form.username, password: form.password, email: form.email },
+        {
+          loginId: form.loginId,
+          password: form.password,
+          nickname: form.nickname,
+          email: form.email,
+        },
         { skipAuth: true } as any
       );
       alert('회원가입 완료! 로그인해주세요.');
@@ -85,9 +91,20 @@ const SignupPage: React.FC = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           <input
             type="text"
-            name="username"
+            name="loginId"
             placeholder="아이디"
-            value={form.username}
+            value={form.loginId}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            style={inputStyle}
+            onFocus={(e) => e.target.style.borderColor = '#6366f1'}
+            onBlur={(e) => e.target.style.borderColor = '#e5e7eb'}
+          />
+          <input
+            type="text"
+            name="nickname"
+            placeholder="닉네임"
+            value={form.nickname}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             style={inputStyle}

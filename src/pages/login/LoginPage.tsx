@@ -19,7 +19,7 @@ const LoginPage: React.FC = () => {
     try {
       const { data } = await api.post(
         '/api/v1/auth/login',
-        { username, password },
+        { loginId: username, password },
         { skipAuth: true } as any
       );
       localStorage.setItem('accessToken', data.data.accessToken);
@@ -118,6 +118,20 @@ const LoginPage: React.FC = () => {
             }}
           >
             {isLoading ? '로그인 중...' : '로그인'}
+          </button>
+
+          <button
+            onClick={() => navigate('/signup')}
+            style={{
+              padding: '14px',
+              background: 'transparent',
+              color: '#6b7280',
+              border: 'none',
+              fontSize: '14px',
+              cursor: 'pointer',
+            }}
+          >
+            계정이 없으신가요? 회원가입
           </button>
         </div>
       </div>

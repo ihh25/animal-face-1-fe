@@ -4,6 +4,7 @@ import UploadPage from './pages/upload/UploadPage';
 import LoadingPage from './pages/loading/LoadingPage';
 import ResultPage from './pages/result/ResultPage';
 import LoginPage from './pages/login/LoginPage';
+import SignupPage from './pages/signup/SignupPage';
 
 const CollectionPage = React.lazy(() => import('./pages/collection/CollectionPage'));
 const CollectionDetailPage = React.lazy(() => import('./pages/collection/CollectionDetailPage'));
@@ -22,6 +23,7 @@ const App: React.FC = () => {
       <React.Suspense fallback={<div>로딩 중...</div>}>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/" element={<PrivateRoute><UploadPage /></PrivateRoute>} />
           <Route path="/loading" element={<PrivateRoute><LoadingPage /></PrivateRoute>} />
           <Route path="/result" element={<PrivateRoute><ResultPage /></PrivateRoute>} />

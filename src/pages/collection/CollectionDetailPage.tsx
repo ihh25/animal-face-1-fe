@@ -3,7 +3,7 @@ import { ANIMAL_LABELS, ANIMAL_EMOJI, ANIMAL_CELEBRITIES } from '@/types/collect
 import type { PokedexEntry, AnimalType } from '@/types/collection';
 
 interface CollectionDetailProps {
-  entry: PokedexEntry;
+  entry?: PokedexEntry;
 }
 
 const BAR_COLORS: Record<AnimalType, string> = {

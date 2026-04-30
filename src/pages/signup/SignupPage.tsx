@@ -19,7 +19,7 @@ const SignupPage: React.FC = () => {
   };
 
   const handleSignup = async () => {
-    if (!form.username || !form.password || !form.email) {
+    if (!form.loginId || !form.password || !form.email) {
       setError('모든 항목을 입력해주세요.');
       return;
     }

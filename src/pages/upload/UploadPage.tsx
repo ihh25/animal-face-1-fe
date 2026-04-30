@@ -45,8 +45,31 @@ const UploadPage: React.FC = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate('/login');
+  };
+
   return (
     <div style={{ maxWidth: '480px', margin: '0 auto', padding: '40px 16px' }}>
+      {/* 로그아웃 버튼 */}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
+        <button
+          onClick={handleLogout}
+          style={{
+            padding: '8px 16px',
+            background: 'transparent',
+            color: '#6b7280',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
+            fontSize: '13px',
+            cursor: 'pointer',
+          }}
+        >
+          로그아웃
+        </button>
+      </div>
+
       <h1 style={{ fontSize: '24px', fontWeight: 600, marginBottom: '8px' }}>
         나의 동물상 찾기 🐾
       </h1>

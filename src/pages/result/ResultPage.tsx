@@ -27,13 +27,13 @@ const ResultPage: React.FC = () => {
     return null;
   }
 
-  //   // allSimilarities를 AnimalPrediction[] 배열로 변환
-  // const animals: AnimalPrediction[] = Object.entries(result.allSimilarities).map(
-  //   ([label, probability]) => ({
-  //     label: label as AnimalType,
-  //     probability: probability / 100,  // 백엔드가 % 단위로 주니까 0~1로 변환
-  //   })
-  // );
+  // allSimilarities를 AnimalPrediction[] 배열로 변환
+  const animals: AnimalPrediction[] = Object.entries(result.allSimilarities ?? {}).map(
+    ([label, probability]) => ({
+      label: label as AnimalType,
+      probability: probability as number, // / 100 제거!
+    })
+  );
 
   const emoji = ANIMAL_EMOJI[result.animalType] ?? '🐾';
   const animalName = ANIMAL_NAME[result.animalType] ?? result.animalType;
@@ -79,7 +79,7 @@ const ResultPage: React.FC = () => {
       <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '16px' }}>
         동물상 분석 결과
       </h3>
-      <AnimalChart animals={result.allSimilarities} />
+      <AnimalChart animals={animals} />
 
       {/* 버튼 */}
       <div style={{ display: 'flex', gap: '12px', marginTop: '32px' }}>

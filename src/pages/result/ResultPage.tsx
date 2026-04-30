@@ -27,11 +27,17 @@ const ResultPage: React.FC = () => {
     return null;
   }
 
-  // allSimilarities를 AnimalPrediction[] 배열로 변환
+  // // allSimilarities를 AnimalPrediction[] 배열로 변환
+  // const animals: AnimalPrediction[] = Object.entries(result.allSimilarities ?? {}).map(
+  //   ([label, probability]) => ({
+  //     label: label as AnimalType,
+  //     probability: probability as number, // / 100 제거!
+  //   })
+  // );
   const animals: AnimalPrediction[] = Object.entries(result.allSimilarities ?? {}).map(
     ([label, probability]) => ({
       label: label as AnimalType,
-      probability: probability as number, // / 100 제거!
+      probability: Number(probability), // as number 대신 Number()로 변환
     })
   );
 

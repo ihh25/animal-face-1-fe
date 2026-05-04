@@ -8,10 +8,7 @@ interface AnimalChartProps {
 const COLORS = ['#6366f1', '#8b5cf6', '#a78bfa', '#c4b5fd', '#ddd6fe'];
 
 const AnimalChart: React.FC<AnimalChartProps> = ({ animals }) => {
-  // 객체를 배열로 변환
-  const sorted = Object.entries(animals as unknown as Record<string, number>)
-    .map(([label, probability]) => ({ label, probability }))
-    .sort((a, b) => b.probability - a.probability);
+  const sorted = [...animals].sort((a, b) => b.probability - a.probability);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
